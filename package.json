@@ -1,22 +1,28 @@
 {
-  "name": "n11-client",
-  "version": "1.0.0",
-  "description": "n11 API Client for node.js",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
-  "keywords": [
-    "node.js",
-    "n11",
-    "api",
-    "saop",
-    "integration",
-    "e-commerce"
-  ],
-  "author": "Evrim Olçum",
-  "license": "ISC",
-  "dependencies": {
-    "soap": "^0.27.1"
-  }
+    "name": "n11-client",
+    "version": "1.0.0",
+    "description": "n11 API Client for node.js",
+    "main": "n11-client.js",
+    "scripts": {
+        "test": "mocha || true"
+    },
+    "keywords": [
+        "node.js",
+        "n11",
+        "api",
+        "saop",
+        "integration",
+        "e-commerce"
+    ],
+    "author": "Evrim Olçum",
+    "license": "ISC",
+    "dependencies": {
+        "soap": "^0.27.1"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "expect.js": "^0.3.1",
+        "mocha": "^6.1.4",
+        "uuid": "^3.3.2"
+    }
 }
