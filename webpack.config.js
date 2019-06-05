@@ -1,5 +1,5 @@
 const config = {
-    entry: "./src/n11-client.js",
+    entry: "./n11-client.js",
     output: {
         filename: 'n11-client.min.js',
     },
