@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var soap = require('soap');
 
 module.exports = class {
@@ -18,13 +18,16 @@ module.exports = class {
                 appSecret: this.appSecret
             }
             soap.createClientAsync(url, {
-                attributesKey: '$attributes'
-            }).then((client) => {
-                return client[function_name + "Async"](payload).then((result) => {
+                    attributesKey: '$attributes'
+                }).then((client) => {
+                    return client[function_name + 'Async'](payload).then((result) => {
 
-                    resolve(result);
+                        resolve(result);
+                    });
+                })
+                .catch(err => {
+                    reject(err);
                 });
-            });
         })
     }
 }

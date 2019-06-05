@@ -1,4 +1,4 @@
-const ProductService = require('../productService');
+const ProductService = require('../src/productService');
 var assert = require('chai').assert;
 const uuidv1 = require('uuid/v1');
 
@@ -8,7 +8,7 @@ describe("product-service", async function () {
     this.timeout(120000);
 
     it("should get productList", async function () {
-        let result = await productSrv.getProductList();
+        let result = await productSrv.getProductList(0, 50);
         assert(result[0].result.status == "success", result[0].result.errorMessage);
         product = result[0].products.product[2];
     });

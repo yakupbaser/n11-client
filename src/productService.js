@@ -1,43 +1,43 @@
-"use strict";
-let N11_Client = require("./n11-client");
+'use strict';
+let Client = require('./client');
 
-module.exports = class extends N11_Client {
+module.exports = class extends Client {
 
     constructor(appKey, appSecret) {
         super(appKey, appSecret)
-        this.wsdl = "https://api.n11.com/ws/ProductService.wsdl";
+        this.wsdl = 'https://api.n11.com/ws/ProductService.wsdl';
     }
 
     getProductList(currentPage, pageSize) {
-        return super.call(this.wsdl, "GetProductList", {
+        return super.call(this.wsdl, 'GetProductList', {
             pagingData: {
-                currentPage: 0,
-                pageSize: 50,
+                currentPage: currentPage,
+                pageSize: pageSize,
             }
         });
     }
 
     getProductByProductId(productId) {
-        return super.call(this.wsdl, "GetProductByProductId", {
+        return super.call(this.wsdl, 'GetProductByProductId', {
             productId: productId
         });
     }
 
     getProductBySellerCode(sellerCode) {
-        return super.call(this.wsdl, "GetProductBySellerCode", {
+        return super.call(this.wsdl, 'GetProductBySellerCode', {
             sellerCode: sellerCode
         });
     }
 
 
     deleteProductById(productId) {
-        return super.call(this.wsdl, "DeleteProductById", {
+        return super.call(this.wsdl, 'DeleteProductById', {
             productId: productId
         });
     }
 
     deleteProductBySellerCode(productSellerCode) {
-        return super.call(this.wsdl, "DeleteProductBySellerCode", {
+        return super.call(this.wsdl, 'DeleteProductBySellerCode', {
             productSellerCode: productSellerCode
         });
     }
@@ -46,11 +46,11 @@ module.exports = class extends N11_Client {
         product = {
             product: product
         };
-        return super.call(this.wsdl, "SaveProduct", product);
+        return super.call(this.wsdl, 'SaveProduct', product);
     }
 
     updateProductPriceById(productId, price, currencyType) {
-        return super.call(this.wsdl, "UpdateProductPriceById", {
+        return super.call(this.wsdl, 'UpdateProductPriceById', {
             productId: productId,
             price: price,
             currencyType: currencyType
@@ -58,7 +58,7 @@ module.exports = class extends N11_Client {
     }
 
     updateProductPriceBySellerCode(productSellerCode, price, currencyType) {
-        return super.call(this.wsdl, "UpdateProductPriceBySellerCode", {
+        return super.call(this.wsdl, 'UpdateProductPriceBySellerCode', {
             productSellerCode: productSellerCode,
             price: price,
             currencyType: currencyType
@@ -66,7 +66,7 @@ module.exports = class extends N11_Client {
     }
 
     updateDiscountValueByProductId(productId, discountType, discountValue) {
-        return super.call(this.wsdl, "UpdateDiscountValueByProductId", {
+        return super.call(this.wsdl, 'UpdateDiscountValueByProductId', {
             productId: productId,
             productDiscount: {
                 discountType: discountType,
@@ -74,8 +74,8 @@ module.exports = class extends N11_Client {
             }
         });
     }
-    updateDiscountValueBySellerCode(productId, discountType, discountValue) {
-        return super.call(this.wsdl, "UpdateDiscountValueBySellerCode", {
+    updateDiscountValueBySellerCode(productSellerCode, discountType, discountValue) {
+        return super.call(this.wsdl, 'UpdateDiscountValueBySellerCode', {
             productSellerCode: productSellerCode,
             productDiscount: {
                 discountType: discountType,
