@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 const uuidv1 = require('uuid/v1');
 
 describe("product-service", async function () {
-    let productSrv = new ProductService("81a7736d-0c3e-4b33-aaf3-3d8da3a0958a", "HSzSqslCDT7tBlhI");
+    let productSrv = new ProductService("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "yyyyyyyyyyyyyy");
     let product;
     this.timeout(120000);
 

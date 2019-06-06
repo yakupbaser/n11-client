@@ -1,10 +1,10 @@
 {
     "name": "n11-client",
-    "version": "1.0.02",
+    "version": "1.0.03",
     "description": "n11 API Client for node.js",
     "main": "n11-client.js",
     "scripts": {
-        "build": "webpack --mode production ./src/n11-client.js --output ./dist/main.js",
+        "build": "webpack --mode production",
         "test": "mocha || true"
     },
     "keywords": [

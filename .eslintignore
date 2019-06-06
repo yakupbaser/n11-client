@@ -1,1 +1,0 @@
-eslint --ignore-path .gitignore file.js
