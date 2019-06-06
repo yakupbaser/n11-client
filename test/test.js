@@ -20,7 +20,7 @@ describe("product-service", async function () {
     });
 
     it("should get the first product by seller_code", async function () {
-        let result = await productSrv.getProductBySellerCode("158b38c3a0f6409d9410172ec55566df");
+        let result = await productSrv.getProductBySellerCode(product.productSellerCode);
         assert(result[0].result.status == "success", result[0].result.errorMessage);
     });
 
