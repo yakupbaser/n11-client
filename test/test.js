@@ -1,9 +1,11 @@
 const ProductService = require('../src/productService');
-var assert = require('chai').assert;
+const ProductStockService = require('../src/productStockService');
+const assert = require('chai').assert;
 const uuidv1 = require('uuid/v1');
 
 describe("product-service", async function () {
     let productSrv = new ProductService("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "yyyyyyyyyyyyyy");
+    let productStockSrv = new ProductStockService("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "yyyyyyyyyyyyyy");
     let product;
     this.timeout(120000);
 
@@ -37,6 +39,19 @@ describe("product-service", async function () {
         let result = await productSrv.updateDiscountValueByProductId(product.id, 3, price - 1);
         assert(result[0].result.status == "success", result[0].result.errorMessage);
         assert(+(result[0].product.displayPrice) == price - 1, "old price is: " + price + " new price is: " + +(result[0].product.price));
+    });
+
+    it("should get Stock", async function () {
+        let result = await productStockSrv.getProductStockByProductId(product.id);
+        stockItems = result[0].stockItems;
+        assert(result[0].result.status == "success", result[0].result.errorMessage);
+    });
+    it("should update Stock", async function () {
+        stockItems.stockItem[0].quantity = 0;
+        await new Promise(resolve => setTimeout(resolve, 62000));
+        let result = await productStockSrv.updateStockByStockId(stockItems);
+        console.log(result[0].stockItems);
+        assert(result[0].result.status == "success", result[0].result.errorMessage);
     });
 
     it("should delete the new product by id", async function () {

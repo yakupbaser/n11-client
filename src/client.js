@@ -21,7 +21,7 @@ module.exports = class {
                     attributesKey: '$attributes'
                 }).then((client) => {
                     return client[function_name + 'Async'](payload).then((result) => {
-
+                        
                         resolve(result);
                     });
                 })
