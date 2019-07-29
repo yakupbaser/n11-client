@@ -9,10 +9,6 @@ module.exports = class {
 
     call(url, function_name, payload) {
         return new Promise((resolve, reject) => {
-            if (payload.attributes) {
-                payload.$attributes = payload.attributes;
-                delete payload.attributes;
-            }
             payload.auth = {
                 appKey: this.appKey,
                 appSecret: this.appSecret

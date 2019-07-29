@@ -1,6 +1,6 @@
 {
     "name": "n11-client",
-    "version": "1.0.07",
+    "version": "1.0.08",
     "description": "n11 API Client for node.js",
     "main": "n11-client.js",
     "scripts": {
