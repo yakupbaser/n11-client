@@ -14,7 +14,7 @@ module.exports = class {
                 appSecret: this.appSecret
             }
             soap.createClientAsync(url, {
-                    attributesKey: '$attributes'
+                    attributesKey: '$attr'
                 }).then((client) => {
                     return client[function_name + 'Async'](payload).then((result) => {
                         
