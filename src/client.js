@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * @class client
+ * @author Evrim OLÇUM
+ */
 var soap = require('soap');
 
 module.exports = class {

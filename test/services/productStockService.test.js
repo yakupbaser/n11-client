@@ -1,5 +1,5 @@
 let ProductStockService = require('../../src/services/productStockService');
-let prdctStockService = new ProductStockService('7a68fb2e-69a7-48da-8eaf-ed4bbd73b18b', 'kCd1FY0D2pKpZAO1');
+let prdctStockService = new ProductStockService('xxxxxx', 'xxxxxxx');
 
 describe('ProductStockService Library', function () {
 
