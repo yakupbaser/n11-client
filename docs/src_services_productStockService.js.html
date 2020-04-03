@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: src/services/productStockService.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-starting-guide.html">Starting Guide</a></li></ul><h3>Modules</h3><ul><li><a href="module-class_CategoryService.html">class/CategoryService</a></li><li><a href="module-class_cityService.html">class/cityService</a></li><li><a href="module-class_OrderService.html">class/OrderService</a></li><li><a href="module-class_ProductSellingService.html">class/ProductSellingService</a></li><li><a href="module-class_ProductService.html">class/ProductService</a></li><li><a href="module-class_ProductStockService.html">class/ProductStockService</a></li><li><a href="module-class_settlementService.html">class/settlementService</a></li><li><a href="module-class_shipmentCompanyService.html">class/shipmentCompanyService</a></li><li><a href="module-class_shipmentService.html">class/shipmentService</a></li><li><a href="module-class_ticketService.html">class/ticketService</a></li></ul><h3>Classes</h3><ul><li><a href="module-class_CategoryService.html">class/CategoryService</a></li><li><a href="module-class_OrderService.html">class/OrderService</a></li><li><a href="module-class_ProductSellingService.html">class/ProductSellingService</a></li><li><a href="module-class_ProductService.html">class/ProductService</a></li><li><a href="module-class_ProductStockService.html">class/ProductStockService</a></li><li><a href="module-class_settlementService.html">class/settlementService</a></li><li><a href="module-class_shipmentCompanyService.html">class/shipmentCompanyService</a></li><li><a href="module-class_shipmentService.html">class/shipmentService</a></li><li><a href="module-class_ticketService.html">class/ticketService</a></li></ul><h3><a href="global.html">Global</a></h3></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>src/services/productStockService.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+let Client = require('../client');
+
+/**
+ * @module class/ProductStockService
+ * @author Yakup BAŞER
+ */
+
+module.exports = class extends Client {
+
+    /**
+     * @param {String} appKey     n11 appkey
+     * @param {String} appSecret  n11 appSecret
+     */    
+    constructor(appKey, appSecret) {
+        super(appKey, appSecret)
+        this.wsdl = 'https://api.n11.com/ws/ProductStockService.wsdl';
+    }
+
+    /**
+     * @async
+     * @function GetProductStockByProductId
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {number} productId 
+     * @returns {Promise&lt;object>} 
+     * @description Sistemde kayıtlı olan ürünün N11 ürün ID si ile ürün stok bilgilerini getiren metottur. 
+     * Cevap içinde stok durumunun “version” bilgisi de vardır, ürün stoklarında değişme olduysa 
+     * bu versiyon bilgisi artacaktır, çağrı yapan taraf versiyon bilgisini kontrol ederek N11 e 
+     * verilen stok bilgilerinde değişim olup olmadığını anlayabilir. Kocamon
+     */
+    GetProductStockByProductId(productId) {
+        return super.call(this.wsdl, 'GetProductStockByProductId', {
+            productId: productId
+        });
+    }
+
+    /**
+     * @async
+     * @function GetProductStockByProductSellerCode
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {string} productSellerCode 
+     * @returns {Promise&lt;object>} 
+     * @description Sistemde kayıtlı olan ürünün mağaza ürün kodu ile ürün stok bilgilerini getiren metottur. 
+     * Cevap içinde stok durumunun “version” bilgisi de vardır, ürün stoklarında değişme olduysa 
+     * bu versiyon bilgisi artacaktır, çağrı yapan taraf versiyon bilgisini kontrol ederek N11 e 
+     * verilen stok bilgilerinde değişim olup olmadığını anlayabilir.
+     */
+    GetProductStockByProductSellerCode(productSellerCode) {
+        return super.call(this.wsdl, 'GetProductStockByProductSellerCode', {
+            productSellerCode: productSellerCode
+        });
+    }
+
+    /**
+     * @async
+     * @function IncreaseStockByStockId
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {Object[]} stockItems 
+     * @param {Object} stockItems[].stockItem 
+     * @param {number} stockItems[].stockItem.id Ürün stok id bilgisi 
+     * @param {number} stockItems[].stockItem.quantityToIncrease Arttıralacak stok miktarı
+     * @param {number} stockItems[].stockItem.version Ürün versiyon numarası
+     * @returns {Promise&lt;object>} 
+     * @description Bir ürünün n11 ürün stok ID bilgisini kullanarak stok miktarını arttırmak için kullanılır. 
+     * Bir ürüne ait n11 ürün stok ID sine, ProductStockService içindeki GetProductStockByProductId 
+     * veya GetProductStockBySellerCode metotları ile ulaşılabilir.&lt;br>
+     * N11 tarafında değişen stok miktarlarını ezmemek için, “version” bilgisi verilmesi durumunda 
+     * ilgili ürün stok bilgisinin N11 de versiyonu ile karşılaştırma yapılır, stok versiyon numaraları 
+     * uyumsuz ise işlem gerçekleştirilmez. 
+     */
+    IncreaseStockByStockId(stockItems) {
+        return super.call(this.wsdl, 'IncreaseStockByStockId', {
+            stockItems: stockItems
+        });
+    }
+
+    /**
+     * @async
+     * @function IncreaseStockByStockSellerCode
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {Object[]} stockItems 
+     * @param {Object} stockItems[].stockItem 
+     * @param {string} stockItems[].stockItem.sellerStockCode Mağaza stok kodu
+     * @param {number} stockItems[].stockItem.quantityToIncrease Arttıralacak stok miktarı
+     * @param {number} stockItems[].stockItem.version Ürün versiyon numarası
+     * @returns {Promise&lt;object>} 
+     * @description Bir ürünün mağaza stok kodu kullanarak stok miktarını arttırmak için kullanılır. &lt;br>
+     * N11 tarafında değişen stok miktarlarını ezmemek için, “version” bilgisi verilmesi durumunda
+     *  ilgili ürün stok bilgisinin N11 de versiyonu ile karşılaştırma yapılır, stok versiyon numaraları
+     *  uyumsuz ise işlem gerçekleştirilmez. 
+     */
+    IncreaseStockByStockSellerCode(stockItems) {
+        return super.call(this.wsdl, 'IncreaseStockByStockSellerCode', {
+            stockItems: stockItems
+        });
+    }
+
+    /** 
+     * @async
+     * @function IncreaseStockByStockAttributes
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {Object} product 
+     * @param {number} product.id Ürünün n11 ID si 
+     * @param {Object[]} product.stockItems
+     * @param {Object} product.stockItems[].stockItem
+     * @param {Object[]} product.stockItems[].stockItem.attributes
+     * @param {Object} product.stockItems[].stockItem.attributes[].attribute
+     * @param {string} product.stockItems[].stockItem.attributes[].attribute.name Stok tanımının olduğu seçenek adı
+     * @param {string} product.stockItems[].stockItem.attributes[].attribute.value Stok tanımının olduğu seçenek değeri
+     * @param {number} product.stockItems[].stockItem.quantityToIncrease Arttıralacak stok miktarı
+     * @param {number} product.stockItems[].stockItem.version Ürün stok versiyon numarası
+     * @returns {Promise&lt;object>} 
+     * @description Bir ürünün stok seçenek bilgilerini kullanarak stok miktarını arttırmak için kullanılır.&lt;br>
+     * N11 tarafında değişen stok miktarlarını ezmemek için, “version” bilgisi verilmesi durumunda 
+     * ilgili ürün stok bilgisinin N11 de versiyonu ile karşılaştırma yapılır, stok versiyon numaraları 
+     * uyumsuz ise işlem gerçekleştirilmez.
+     */
+    IncreaseStockByStockAttributes(product) {
+        return super.call(this.wsdl, 'IncreaseStockByStockAttributes', {
+            product: product
+        });
+    }
+
+    /**
+     * @async
+     * @function UpdateStockByStockId
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {Object[]} stockItems
+     * @param {Object} stockItems[].stockItem
+     * @param {number} stockItems[].stockItem.id Ürün stok N11 ID si
+     * @param {number} stockItems[].stockItem.quantity Yeni ürün stok miktarı
+     * @param {number} stockItems[].stockItem.version Ürün stok versiyon numarası
+     * @param {boolean} stockItems[].stockItem.delist
+     * @returns {Promise&lt;object>} 
+     * @description n11 ürün stok ID si kullanarak kayıtlı ürünün stok bilgilerini güncellemek için kullanılır. 
+     * n11 ürün stok ID si ve miktar bilgileri girilerek güncelleme işlemi yapılır. Bir ürüne ait n11 ürün stok ID sine, 
+     * ProductStockService içindeki GetProductStockByProductId veya GetProductStockBySellerCode metotları ile ulaşılabilir.
+     * &lt;br>N11 tarafında değişen stok miktarlarını ezmemek için, “version” bilgisi verilmesi durumunda ilgili ürün stok 
+     * bilgisinin N11 de versiyonu ile karşılaştırma yapılır, stok versiyon numaraları uyumsuz ise işlem gerçekleştirilmez. 
+     * &lt;br>API'de UpdateStockByStockId ve UpdateStockByStockSellerCode metodları ile stok güncelleme işlemi için tek bir istek
+     *  içerisinde en fazla 100 stok değeri güncelleyebilirsiniz.
+     * &lt;br>Hata almamak için güncellemeleri ürüne göre yapmayı unutmayın.
+     * &lt;br>Örneğin, ilk 100 stok içinde güncellediğiniz ürün, diğer 100 stok içinde de yer alıyorsa, sistem ilk güncellemeyi 
+     * hala devam ettirdiği için "Ürün, 60 saniye güncellenemez" hatası alırsınız. Bu sebeple, aynı ürünü aynı 100 stok değeri
+     *  içinde güncellemeniz gerekir.
+     */
+    UpdateStockByStockId(stockItems) {
+        return super.call(this.wsdl, 'UpdateStockByStockId', {
+            stockItems: stockItems
+        });
+    }
+
+    /**
+     * @async
+     * @function UpdateStockByStockSellerCode
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {Object[]} stockItems
+     * @param {Object} stockItems[].stockItem
+     * @param {string} stockItems[].stockItem.sellerStockCode Ürün stok mağaza kodu
+     * @param {number} stockItems[].stockItem.quantity Yeni ürün stok miktarı
+     * @param {number} stockItems[].stockItem.version Ürün stok versiyon numarası 
+     * @returns {Promise&lt;object>} 
+     * @description Mağaza ürün stok kodu kullanarak kayıtlı ürünün stok bilgilerini güncellemek için kullanılır. 
+     * Mağaza ürün stok kodu ve miktar bilgileri girilerek güncelleme işlemi yapılır. 
+     * &lt;br>N11 tarafında değişen stok miktarlarını ezmemek için, “version” bilgisi verilmesi durumunda ilgili ürün 
+     * stok bilgisinin N11 de versiyonu ile karşılaştırma yapılır, stok versiyon numaraları uyumsuz ise işlem gerçekleştirilmez. 
+     * &lt;br>API'de UpdateStockByStockId ve UpdateStockByStockSellerCode metodları ile stok güncelleme işlemi için tek bir istek 
+     * içerisinde en fazla 100 stok değeri güncelleyebilirsiniz.
+     * &lt;br>Hata almamak için güncellemeleri ürüne göre yapmayı unutmayın.
+     * &lt;br>Örneğin, ilk 100 stok içinde güncellediğiniz ürün, diğer 100 stok içinde de yer alıyorsa, sistem ilk güncellemeyi hala devam
+     *  ettirdiği için "Ürün, 60 saniye güncellenemez" hatası alırsınız. Bu sebeple, aynı ürünü aynı 100 stok değeri içinde güncellemeniz gerekir.
+     */
+    UpdateStockByStockSellerCode(stockItems) {
+        return super.call(this.wsdl, 'UpdateStockByStockSellerCode', {
+            stockItems: stockItems
+        });
+    }
+
+    /**
+     * @async
+     * @function DeleteAndUpdateStockByStockAttributes
+     * @memberof module:class/ProductStockService
+     * @instance
+     * @param {Object} product 
+     * @param {number} product.id Ürünün n11 ID si 
+     * @param {Object[]} product.stockItems
+     * @param {Object} product.stockItems[].stockItem
+     * @param {Object[]} product.stockItems[].stockItem.attributes
+     * @param {Object} product.stockItems[].stockItem.attributes[].attribute
+     * @param {string} product.stockItems[].stockItem.attributes[].attribute.name Ürün stok özellik adı
+     * @param {string} product.stockItems[].stockItem.attributes[].attribute.value Ürün stok özellik değeri
+     * @param {number} product.stockItems[].stockItem.quantity Arttıralacak stok miktarı
+     * @param {number} product.stockItems[].stockItem.version Ürün stok versiyon numarası
+     * @returns {Promise&lt;object>} 
+     * @description Ürün stok seçenek bilgilerini kullanarak kayıtlı ürünün stok bilgilerini güncellemek için kullanılır. 
+     * Ürün n11 ID si ve stok seçenek bilgileri girilerek güncelleme işlemi yapılır. Bir ürüne ait stok bilgilerine, 
+     * ProductStockService içindeki GetProductStockByProductId veya GetProductStockBySellerCode metotları ile ulaşılabilir.
+     *  Bir ürün için tüm stok bilgilerini güncelleme işlemi gerçekleştirilebilir. 
+     * &lt;br>N11 tarafında değişen stok miktarlarını ezmemek için, “version” bilgisi verilmesi durumunda ilgili ürün stok
+     *  bilgisinin N11 de versiyonu ile karşılaştırma yapılır, stok versiyon numaraları uyumsuz ise işlem gerçekleştirilmez. 
+     */
+    DeleteAndUpdateStockByStockAttributes(product) {
+        return super.call(this.wsdl, 'DeleteAndUpdateStockByStockAttributes', {
+            product: product
+        });
+    }
+
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Apr 01 2020 18:15:34 GMT+0300 (GMT+03:00)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+import './productSearch';
+import './product';
+import './productDiscount';
+import './productQuestionSearch';
+import './stockItems';
+import './productIdList';
+import './orderItem';
+import './productDetail';
+import './searchData';
+import './shipment';
