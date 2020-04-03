@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: src/services/settlementService.js</title>
+    <title>JSDoc: client</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -53,83 +51,158 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Source</p>
-                        <h1>src/services/settlementService.js</h1>
+                        <p>Class</p>
+                        <h1>client</h1>
                     </header>
                     
                     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-let Client = require('../client');
+        <h2><span class="attribs"><span class="type-signature"></span></span>client<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
-/**
- * @module class/settlementService
- * @author Yakup BAŞER
- */
-module.exports = class extends Client {
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
 
-    /**
-     * @param {String} appKey     n11 appkey
-     * @param {String} appSecret  n11 appSecret
-     */    
-    constructor(appKey, appSecret) {
-        super(appKey, appSecret)
-        this.wsdl = 'https://api.n11.com/ws/SettlementService.wsdl';
-    }
 
-    /**
-     * @async
-     * @function GetSettlementList
-     * @memberof module:class/settlementService
-     * @instance
-     * @param {string} startDate Tarih aralığı başlangıcı (YYYY-MM-DD)
-     * @param {string} endDate Tarih aralığı bitişi (YYYY-MM-DD)
-     * @param {number} currentPage 
-     * @param {number} pageSize 
-     * @returns {Promise&lt;object>} 
-     * @description Seçilen tarih aralığına göre ödeme bilgilerini listeleyen servis
-     */
-    GetSettlementList(startDate, endDate, currentPage, pageSize) {
-        return super.call(this.wsdl, 'GetSettlementList', {
-            startDate: startDate,
-            endDate: endDate,
-            pagingData: {
-                currentPage: currentPage,
-                pageSize: pageSize
-            }    
-        });
-    }
+    
+    <h4 class="name" id="client">
+        <a class="href-link" href="#client">#</a>
+        
+        <span class="code-name">
+            
+                new client<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
 
-    /**
-     * @async
-     * @function GetSettlementDetail
-     * @memberof module:class/settlementService
-     * @instance
-     * @param {string} date Uzlaşma tarihi (YYYY-MM-DD)
-     * @param {number} currentPage 
-     * @param {number} pageSize 
-     * @returns {Promise&lt;object>} 
-     * @description GetSettlementList metodu ile listelenen ödemelere ait ayrıntıları gösteren metod. 
-     * Belirli bir gün seçilerek, o güne ait satış/uzlaşma detayları getirilir.
-     */
-    GetSettlementDetail(date, currentPage, pageSize) {
-        return super.call(this.wsdl, 'GetSettlementDetail', {
-            date: date,
-            pagingData: {
-                currentPage: currentPage,
-                pageSize: pageSize
-            }    
-        });
-    }
+    
+    
 
-}</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Evrim OLÇUM</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_client.js.html" class="button">View Source</a>
+            <span>
+                <a href="src_client.js.html">src/client.js</a>, <a href="src_client.js.html#line2">line 2</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

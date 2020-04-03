@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: src/services/settlementService.js</title>
+    <title>JSDoc: src/client.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>src/services/settlementService.js</h1>
+                        <h1>src/client.js</h1>
                     </header>
                     
                     
@@ -65,68 +65,37 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-let Client = require('../client');
-
 /**
- * @module class/settlementService
- * @author Yakup BAŞER
+ * @class client
+ * @author Evrim OLÇUM
  */
-module.exports = class extends Client {
+var soap = require('soap');
 
-    /**
-     * @param {String} appKey     n11 appkey
-     * @param {String} appSecret  n11 appSecret
-     */    
+module.exports = class {
     constructor(appKey, appSecret) {
-        super(appKey, appSecret)
-        this.wsdl = 'https://api.n11.com/ws/SettlementService.wsdl';
+        this.appKey = appKey;
+        this.appSecret = appSecret;
     }
 
-    /**
-     * @async
-     * @function GetSettlementList
-     * @memberof module:class/settlementService
-     * @instance
-     * @param {string} startDate Tarih aralığı başlangıcı (YYYY-MM-DD)
-     * @param {string} endDate Tarih aralığı bitişi (YYYY-MM-DD)
-     * @param {number} currentPage 
-     * @param {number} pageSize 
-     * @returns {Promise&lt;object>} 
-     * @description Seçilen tarih aralığına göre ödeme bilgilerini listeleyen servis
-     */
-    GetSettlementList(startDate, endDate, currentPage, pageSize) {
-        return super.call(this.wsdl, 'GetSettlementList', {
-            startDate: startDate,
-            endDate: endDate,
-            pagingData: {
-                currentPage: currentPage,
-                pageSize: pageSize
-            }    
-        });
+    call(url, function_name, payload) {
+        return new Promise((resolve, reject) => {
+            payload.auth = {
+                appKey: this.appKey,
+                appSecret: this.appSecret
+            }
+            soap.createClientAsync(url, {
+                    attributesKey: '$attr'
+                }).then((client) => {
+                    return client[function_name + 'Async'](payload).then((result) => {
+            
+                        resolve(result);
+                    });
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        })
     }
-
-    /**
-     * @async
-     * @function GetSettlementDetail
-     * @memberof module:class/settlementService
-     * @instance
-     * @param {string} date Uzlaşma tarihi (YYYY-MM-DD)
-     * @param {number} currentPage 
-     * @param {number} pageSize 
-     * @returns {Promise&lt;object>} 
-     * @description GetSettlementList metodu ile listelenen ödemelere ait ayrıntıları gösteren metod. 
-     * Belirli bir gün seçilerek, o güne ait satış/uzlaşma detayları getirilir.
-     */
-    GetSettlementDetail(date, currentPage, pageSize) {
-        return super.call(this.wsdl, 'GetSettlementDetail', {
-            date: date,
-            pagingData: {
-                currentPage: currentPage,
-                pageSize: pageSize
-            }    
-        });
-    }
-
 }</code></pre>
         </article>
     </section>
